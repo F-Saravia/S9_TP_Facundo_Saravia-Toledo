@@ -1,9 +1,16 @@
 package sem9TP.entities;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToOne;
+import javax.persistence.PrimaryKeyJoinColumn;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
@@ -33,6 +40,14 @@ public class Admin implements Serializable {
 
 	private int active;
 
+	@ManyToMany
+	@JoinTable(name = "adminRoles", joinColumns = @JoinColumn(name = "adminLogin", referencedColumnName = "login"), inverseJoinColumns = @JoinColumn(name = "rolesRoleName", referencedColumnName = "role"))
+	private List<Role> rolesRoleName = new ArrayList<Role>();
+
+	@OneToOne
+	@PrimaryKeyJoinColumn(referencedColumnName = "responsable")
+	private Sortie uneSortie;
+
 	public Admin() {
 		super();
 	}
@@ -45,7 +60,7 @@ public class Admin implements Serializable {
 		super();
 		this.login = login;
 		this.password = password;
-		this.nomComplet = nomComplet;
+//		this.nomComplet = nomComplet;
 		this.adresse = adresse;
 		this.telephone = telephone;
 		this.active = active;
@@ -66,6 +81,14 @@ public class Admin implements Serializable {
 	public void setPassword(String password) {
 		this.password = password;
 	}
+
+//	public String getNomComplet() {
+//		return nomComplet;
+//	}
+//
+//	public void setNomComplet(String nomComplet) {
+//		this.nomComplet = nomComplet;
+//	}
 
 	public String getNomComplet() {
 		return nomComplet;
@@ -101,6 +124,22 @@ public class Admin implements Serializable {
 
 	public static long getSerialversionuid() {
 		return serialVersionUID;
+	}
+
+	public List<Role> getRolesRoleName() {
+		return rolesRoleName;
+	}
+
+	public void setRolesRoleName(List<Role> rolesRoleName) {
+		this.rolesRoleName = rolesRoleName;
+	}
+
+	public Sortie getUneSortie() {
+		return uneSortie;
+	}
+
+	public void setUneSortie(Sortie uneSortie) {
+		this.uneSortie = uneSortie;
 	}
 
 }

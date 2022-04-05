@@ -6,6 +6,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Positive;
@@ -39,7 +41,9 @@ public class Participant implements Serializable {
 	@Positive(message = "Âge invalide")
 	private int age;
 
-	private int id_sortie;
+	@ManyToOne
+	@JoinColumn(name = "id_sortie", referencedColumnName = "id")
+	private Sortie uneSortie;
 
 	public Participant() {
 		super();
@@ -107,16 +111,16 @@ public class Participant implements Serializable {
 		this.age = age;
 	}
 
-	public int getId_sortie() {
-		return id_sortie;
-	}
-
-	public void setId_sortie(int id_sortie) {
-		this.id_sortie = id_sortie;
-	}
-
 	public static long getSerialversionuid() {
 		return serialVersionUID;
+	}
+
+	public Sortie getUneSortie() {
+		return uneSortie;
+	}
+
+	public void setUneSortie(Sortie uneSortie) {
+		this.uneSortie = uneSortie;
 	}
 
 }

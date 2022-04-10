@@ -2,7 +2,9 @@ package sem9TP.entities;
 
 import java.io.Serializable;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -41,7 +43,7 @@ public class Participant implements Serializable {
 	@Positive(message = "Âge invalide")
 	private int age;
 
-	@ManyToOne
+	@ManyToOne (cascade= CascadeType.MERGE, fetch = FetchType.EAGER)
 	@JoinColumn(name = "id_sortie", referencedColumnName = "id")
 	private Sortie uneSortie;
 

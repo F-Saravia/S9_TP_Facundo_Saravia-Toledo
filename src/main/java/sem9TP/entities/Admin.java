@@ -40,12 +40,14 @@ public class Admin implements Serializable {
 
 	private int active;
 
+	private static String roles = "";
+
 	@ManyToMany
 	@JoinTable(name = "adminRoles", joinColumns = @JoinColumn(name = "adminLogin", referencedColumnName = "login"), inverseJoinColumns = @JoinColumn(name = "rolesRoleName", referencedColumnName = "role"))
 	private List<Role> rolesRoleName = new ArrayList<Role>();
 
 	@OneToOne
-	@PrimaryKeyJoinColumn(referencedColumnName = "responsable")
+	@PrimaryKeyJoinColumn(name = "nomComplet", referencedColumnName = "responsable")
 	private Sortie uneSortie;
 
 	public Admin() {
@@ -60,7 +62,7 @@ public class Admin implements Serializable {
 		super();
 		this.login = login;
 		this.password = password;
-//		this.nomComplet = nomComplet;
+		this.nomComplet = nomComplet;
 		this.adresse = adresse;
 		this.telephone = telephone;
 		this.active = active;
@@ -81,14 +83,6 @@ public class Admin implements Serializable {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-
-//	public String getNomComplet() {
-//		return nomComplet;
-//	}
-//
-//	public void setNomComplet(String nomComplet) {
-//		this.nomComplet = nomComplet;
-//	}
 
 	public String getNomComplet() {
 		return nomComplet;
@@ -120,6 +114,18 @@ public class Admin implements Serializable {
 
 	public void setActive(int active) {
 		this.active = active;
+	}
+
+	public String getRoles() {
+		roles="";
+		for (Role role : rolesRoleName) {
+			roles+= " "+role;
+		}
+		return roles;
+	}
+
+	public void setRoles(String roles) {
+		Admin.roles = roles;
 	}
 
 	public static long getSerialversionuid() {

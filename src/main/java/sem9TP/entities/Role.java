@@ -21,7 +21,7 @@ public class Role implements Serializable {
 	@Id
 	@NotBlank(message = "Rôle invalide, ne peut pas être vide")
 	private String role;
-
+	
 	@ManyToMany
 	@JoinTable(name = "adminRoles", joinColumns = @JoinColumn(name = "rolesRoleName", referencedColumnName = "role"), inverseJoinColumns = @JoinColumn(name = "adminLogin", referencedColumnName = "login"))
 	private List<Admin> adminLogin = new ArrayList<Admin>();
@@ -53,6 +53,11 @@ public class Role implements Serializable {
 
 	public void setAdminLogin(List<Admin> adminLogin) {
 		this.adminLogin = adminLogin;
+	}
+
+	@Override
+	public String toString() {
+		return this.role;
 	}
 
 }

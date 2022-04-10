@@ -1,0 +1,14 @@
+//TODO
+/*
+ * À faire:
+ *	(1) Services:
+ * 	-->interfaces:
+ * 			participant, recommandation, sortie
+ * 	-->implementations:
+ * 			corriger Compte au moment de faire les controllers
+ * 			implementer evaluation
+ * 			implementer participant, recommandation, sortie
+ * 	(2) Controllers
+ * 	(3) Tests
+ * 	(4) Thymleaf 
+ */
